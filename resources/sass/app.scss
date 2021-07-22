@@ -1,0 +1,12 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+// If you don't need the styles, do not connect
+@import '~sweetalert2/dist/sweetalert2.min.css';
+
+@import "~nprogress/nprogress.css";
