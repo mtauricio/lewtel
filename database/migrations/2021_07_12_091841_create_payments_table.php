@@ -15,10 +15,10 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('payment_id');
-            $table->dateTime('date_created');
+            $table->string('payment_id')->unique();
             $table->string('customer_id')->nullable();
-            $table->string('status');
+            $table->string('status')->default('pending');
+            $table->dateTime('payment_at')->nullable();
             $table->timestamps();
         });
     }

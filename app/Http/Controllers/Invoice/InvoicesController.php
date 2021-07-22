@@ -12,7 +12,7 @@ use Inertia\Inertia;
 
 class InvoicesController extends Controller
 {
-    
+
 
     private CreatePreferent $createPreferent;
     private array $invoicesToPay = array();
@@ -25,6 +25,7 @@ class InvoicesController extends Controller
     {
         $this->createPreferent = $createPreferent;
     }
+
     /**
      * @return \Inertia\Response
      */
@@ -35,22 +36,28 @@ class InvoicesController extends Controller
 
     /**
      * @param string $dni
-     * @param GetInvoices $getInvoices
+     * @param GetInvoicesLogin $getInvoices
      * @return \Inertia\Response
      * @throws \Esatic\Suitecrm\Exceptions\AuthenticationException
      */
     public function allInvoices(Request $request, GetInvoicesLogin $getInvoices): \Inertia\Response
     {
         $invoices = $getInvoices->execute($request->input('pay'));
-            return Inertia::render('dashboard/invoices/invoicesTable')->with('invoices', $invoices)->with('pay', $request->input('pay'));
-        
+        return Inertia::render('dashboard/invoices/invoicesTable')->with('invoices', $invoices)->with('pay', $request->input('pay'));
+
     }
 
+    /**
+     * @param Request $request
+     * @param ValidateInvoices $validateInvoices
+     * @return \Inertia\Response
+     * @throws \Exception
+     */
     public function summary(Request $request, ValidateInvoices $validateInvoices)
     {
         if ($validateInvoices->execute($request, $request->input('invoices'))) {
             $preferenceId = $this->createPreferent->execute($request, true);
-            return Inertia::render('dashboard/invoices/summaryInvoices')->with('invoicespay',$validateInvoices->getInvoicesToPay())->with('preferenceid',$preferenceId);
+            return Inertia::render('dashboard/invoices/summaryInvoices')->with('invoicespay', $validateInvoices->getInvoicesToPay())->with('preferenceid', $preferenceId);
         }
         return Inertia::render('dashboard/invoices/noDniFound')->with('error', 'newinvoice');
     }
@@ -59,6 +66,6 @@ class InvoicesController extends Controller
     {
         // dd($request->all());
 
-        return Inertia::render('dashboard/invoices/thakpage')->with('invoices',$request->input('invoices'))->with('statuspay',$request->input('statuspay'));
+        return Inertia::render('dashboard/invoices/thakpage')->with('invoices', $request->input('invoices'))->with('statuspay', $request->input('statuspay'));
     }
 }
