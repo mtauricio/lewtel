@@ -14,10 +14,12 @@
     <link rel="stylesheet" href="{{asset('assets/styles/vendor/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{asset('assets/styles/vendor/smart.wizard/smart_wizard.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/styles/vendor/smart.wizard/smart_wizard_theme_circles.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/vendor/datatables.min.css')}}">
     
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{ asset('assets/js/vendor/jquery-3.3.1.min.js')}}"></script>
     <script src="{{ asset('assets/js/vendor/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/datatables.min.js') }}"></script>
     <script src="{{ asset('assets/js/es5/script.min.js') }}"></script>
     
     

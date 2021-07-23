@@ -15,8 +15,8 @@
 
             <div class="app-admin-wrap layout-sidebar-large">
                 <div class="main-header">
-                    <div class="logo">
-                        <img src="assets/images/logo.png " alt="">
+                    <div class="logo" style="background: black;">
+                        <img src="/assets/images/logo.png " alt="" style="width: 100px; height: 48px;">
                     </div>
 
                     <div class="menu-toggle">
@@ -31,7 +31,8 @@
                         <!-- User avatar dropdown -->
                         <div class="dropdown">
                             <div class="user col align-self-end">
-                                <img src="assets/images/faces/1.jpg" id="userDropdown" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="text-45 i-Male-21" id="userDropdown" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                <!-- <img src="/assets/images/faces/1.jpg" id="userDropdown" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                     <div class="dropdown-header">
@@ -52,7 +53,7 @@
                     <div class="sidebar-left open rtl-ps-none" data-perfect-scrollbar data-suppress-scroll-x="true">
                         <ul class="navigation-left">
                             <li class="nav-item">
-                                <a class="nav-item-hold" href="#">
+                                <a class="nav-item-hold" href="#" @click="home">
                                     <i class="nav-icon i-Home1"></i>
                                     <span class="nav-text">Inicio</span>
                                 </a>
@@ -152,6 +153,10 @@ export default {
          logout() {
             this.$inertia.post(`logout`);
         },
+
+        home() {
+            this.$inertia.get(`/home`);
+        }
 
         }
 

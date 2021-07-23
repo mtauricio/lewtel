@@ -57,7 +57,7 @@ class InvoicesController extends Controller
     {
         if ($validateInvoices->execute($request, $request->input('invoices'))) {
             $preferenceId = $this->createPreferent->execute($request, true);
-            return Inertia::render('dashboard/invoices/summaryInvoices')->with('invoicespay', $validateInvoices->getInvoicesToPay())->with('preferenceid', $preferenceId);
+            return Inertia::render('dashboard/invoices/summaryInvoices')->with('invoicespay', $validateInvoices->getInvoicesToPay())->with('preferenceid', $preferenceId->id);
         }
         return Inertia::render('dashboard/invoices/noDniFound')->with('error', 'newinvoice');
     }

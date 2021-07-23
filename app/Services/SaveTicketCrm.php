@@ -30,7 +30,9 @@ class SaveTicketCrm
     {
         $account = $this->apiCrm->getEntry(auth()->user()->id_crm, auth()->user()->type_user);
         if (isset($account['entry_list'][0]['name_value_list']['id'])) {
-            $entry = $this->apiCrm->setEntry('Cases',['name' => $request->input('affair'),'description' => $request->input('description')]);
+            $entry = $this->apiCrm->setEntry('Cases',['name' => $request->input('affair'),
+                                                      'description' => $request->input('description'),
+                                                      'status' => 'New']);
             
             $idNewEntry = $entry['id'];
             $customerId = $account['entry_list'][0]['id'];

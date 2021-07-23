@@ -16,9 +16,9 @@
                     <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4" @click="getTickets" style="cursor: pointer">
                         <div class="card-body text-center">
                             <i class="i-Information"></i>
-                            <div class="content">
+                            <div class=" mini-cards">
                                 <p class="text-muted mt-2 mb-0">Reclamos</p>
-                                <!-- <p class="lead text-primary text-24 mb-2">20</p> -->
+                                <p class="lead text-primary text-24 mb-2">{{allTickets}}</p>
                             </div>
                         </div>
                     </div>
@@ -28,9 +28,9 @@
                     <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4" @click="getTickets(type)" style="cursor: pointer">
                         <div class="card-body text-center">
                             <i class="i-Information"></i>
-                            <div class="content">
+                            <div class=" mini-cards">
                                 <p class="text-muted mt-2 mb-0">Reclamos Abiertos</p>
-                                <!-- <p class="lead text-primary text-24 mb-2">4021</p> -->
+                                <p class="lead text-primary text-24 mb-2">{{openTickets}}</p>
                             </div>
                         </div>
                     </div>
@@ -40,9 +40,9 @@
                     <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4" @click="getInvoices(type)" style="cursor: pointer">
                         <div class="card-body text-center">
                             <i class="i-Receipt"></i>
-                            <div class="content">
+                            <div class=" mini-cards">
                                 <p class="text-muted mt-2 mb-0">Facturas</p>
-                                <!-- <p class="lead text-primary text-24 mb-2">80</p> -->
+                                <p class="lead text-primary text-24 mb-2">{{allInvoices}}</p>
                             </div>
                         </div>
                     </div>
@@ -52,9 +52,9 @@
                     <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4" style="cursor: pointer" @click="getInvoices">
                         <div class="card-body text-center">
                             <i class="i-Receipt"></i>
-                            <div class="content">
+                            <div class=" mini-cards">
                                 <p class="text-muted mt-2 mb-0">Facturas Pendientes</p>
-                                <!-- <p class="lead text-primary text-24 mb-2">120</p> -->
+                                <p class="lead text-primary text-24 mb-2">{{unpaidInvoices}}</p>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,11 @@ import LayoutDashboard from '../layoutDashboard'
 export default {
     name: "home",
     layout: LayoutDashboard,
-    // props: ['test'],
+    props: ['allTickets',
+            'openTickets',
+            'unpaidInvoices',
+            'allInvoices'],
+    
     data() {
         return {
             type: {
@@ -103,5 +107,10 @@ export default {
 </script>
 
 <style scoped>
-
+ .mini-cards {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+ }
 </style>

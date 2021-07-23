@@ -14,6 +14,10 @@ class Payments extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'payment_id',
+    ];
+
     /**
      * @return HasMany
      */

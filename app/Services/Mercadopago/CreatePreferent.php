@@ -7,6 +7,7 @@ use App\Models\Payments;
 use App\Services\SaveInvoices;
 use App\Services\ValidateInvoices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use MercadoPago\Item;
 use MercadoPago\Preference;
 use MercadoPago\SDK;
@@ -73,11 +74,13 @@ class CreatePreferent
         $preference->auto_return = "approved";
         $preference->items = $invoices;
         $preference->save();
-
-        $payment = new Payments();
-        $payment->fill(['payment_id' => $preference->id]);
-        $payment->save();
-        $this->saveInvoices->execute($payment, $invoices);
+        // Log::info(print_r($preference, true));
+        // Log::info(json_encode($preference));
+        // Log::info($preference->id);
+        // $payment = new Payments();
+        // $payment->fill(['payment_id' => $preference->id]);
+        // $payment->save();
+        // $this->saveInvoices->execute($payment, $invoices);
         return $preference;
     }
 

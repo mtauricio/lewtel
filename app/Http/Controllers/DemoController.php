@@ -55,7 +55,7 @@ class DemoController extends Controller
         // dd($request->input('invoices'));
         if ($validateInvoices->execute($request, $request->input('invoices'))) {
             $preferenceId = $this->createPreferent->execute($request, null);
-            return Inertia::render('invoices/summaryInvoices')->with('invoicespay',$validateInvoices->getInvoicesToPay())->with('preferenceid',$preferenceId);
+            return Inertia::render('invoices/summaryInvoices')->with('invoicespay',$validateInvoices->getInvoicesToPay())->with('preferenceid',$preferenceId->id);
         }
         return Inertia::render('invoices/noDniFound')->with('error', 'newinvoice');
     }

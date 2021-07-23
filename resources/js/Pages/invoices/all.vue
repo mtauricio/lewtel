@@ -98,6 +98,8 @@ export default {
             }).then((result) => {
                 if (result.isConfirmed) {
                     this.$inertia.get(`/invoices/${this.dni}/all/pay`, this.data);
+                }else{
+                    $self.invoicesIds = [];
                 }
             });
         },

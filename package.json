@@ -28,7 +28,15 @@
         "@inertiajs/inertia": "^0.9.2",
         "@inertiajs/inertia-vue": "^0.6.2",
         "@inertiajs/progress": "^0.2.5",
+        "datatables.net": "^1.10.25",
+        "datatables.net-bs": "^2.1.1",
+        "datatables.net-bs4": "^3.2.2",
+        "datatables.net-bs5": "^1.10.25",
+        "datatables.net-buttons-bs4": "^1.7.1",
+        "datatables.net-dt": "^1.1.0",
+        "jszip": "^3.6.0",
         "nprogress": "^0.2.0",
+        "pdfmake": "^0.2.0",
         "vue-sweetalert2": "^5.0.2"
     }
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="m-5">
        <div class="col-md-12 table-responsive">
-        <table class="table table-hover mb-4 ">
+        <table class="table table-hover mb-4 display nowrap" id="invoicesTable" style="display:nowrap;">
            <thead class="bg-gray-300">
             <tr>
                 <th><input type="checkbox" @click="selectAll($event)" :checked="checkedAll == true"></th>
@@ -22,21 +22,28 @@
                 <td>{{ parseFloat(invoice.total_amount) }}</td>
             </tr>
            </tbody>
-        </table>
-            <div class="col-md-12">
-                <div class="invoice-summary w-100">
-                    <h5 class="font-weight-bold">Total a Pagar: <span> {{ total }}</span></h5>
-                    <div class="my-5 justify-content-end">
-                    <button type="button" class="btn btn-success px-5" @click="send" :disabled="disabled == 0">Pagar Factura</button>
+             <tfoot>
+               <tr >
+                   <td colspan="6">
+                     <div class="col-md-12 mt-4">
+                        <div class="invoice-summary w-100">
+                            <h5 class="font-weight-bold">Total a Pagar: <span> {{ total }}</span></h5>
+                            <div class="my-5 justify-content-end">
+                            <button type="button" class="btn btn-success px-5" @click="send" :disabled="disabled == 0">Pagar Factura</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                   </td>
+               </tr>
+           </tfoot>
+        </table>
         </div>
     </div>
 </template>
 
 <script>
-import LayoutDashboard from '../../layoutDashboard'
+import LayoutDashboard from '../../layoutDashboard';
+import datatable from 'datatables.net-bs5'
 export default {
     name: "invoicesTable",
     layout: LayoutDashboard,
@@ -56,10 +63,30 @@ export default {
      mounted() {
          this.data = {};
          console.log(this.pay);
-        
+         this.table();
 
      },
     methods: {
+        table(){
+            this.$nextTick(() =>{
+            $('#invoicesTable').DataTable({
+                "lengthChange": false,
+                "ordering": false,
+                "info": false,
+                "pageLength": 10,
+                language: {
+                    "search":"Buscar:",
+                    "paginate": {
+                        "previous": '‹',
+                        "next":     '›',
+                       
+                    }
+                }
+                
+            });
+        });
+            
+        },
         selectInvoice: function (invoice) {
             if (this.map.has(invoice.id)) {
                 this.map.delete(invoice.id);
@@ -89,10 +116,12 @@ export default {
                 title: '¿Está seguro que desea pagar estas facturas?',
                 showDenyButton: false,
                 showCancelButton: true,
-                confirmButtonText: `Save`,
+                confirmButtonText: `Si`,
             }).then((result) => {
                 if (result.isConfirmed) {
                     this.$inertia.get(`/dasboard/invoices/all/pay/`, this.data);
+                }else{
+                    $self.invoicesIds = [];
                 }
             });
         },
@@ -101,7 +130,10 @@ export default {
             let $self = this;
             if (event.target.checked) {
                  this.invoices.forEach(function (value, key, map) {
-                 $self.map.set(value.id, value);
+                 if (value.status == 'Unpaid') {
+                     $self.map.set(value.id, value);
+                 }    
+                 
                  });
                  this.checked = true;
             } else {
@@ -111,7 +143,9 @@ export default {
             let $selfInvoice = this;
             this.total = 0;
             this.map.forEach(function (value, key, map) {
-                $selfInvoice.total += parseFloat(value.total_amount);
+                if (value.status == 'Unpaid') {
+                    $selfInvoice.total += parseFloat(value.total_amount);
+                }
             });
             if ($selfInvoice.total > 0) {
                 this.disabled = 1;
