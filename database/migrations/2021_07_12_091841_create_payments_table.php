@@ -15,7 +15,8 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('payment_id')->unique();
+            $table->string('payment_id')->nullable();
+            $table->string('preference_id')->nullable();
             $table->string('customer_id')->nullable();
             $table->string('status')->default('pending');
             $table->dateTime('payment_at')->nullable();

@@ -1,0 +1,131 @@
+{
+    "acquirer_reconciliation": [],
+    "additional_info": {
+        "authentication_code": null,
+        "available_balance": null,
+        "ip_address": "201.185.135.211",
+        "items": [
+            {
+                "category_id": null,
+                "description": "3",
+                "id": "7d6338b2-1d7c-d41f-ebf7-60e76c3cf431",
+                "picture_url": null,
+                "quantity": "1",
+                "title": "factura preuba 2",
+                "unit_price": "6000.0"
+            }
+        ],
+        "nsu_processadora": null
+    },
+    "authorization_code": "301299",
+    "binary_mode": false,
+    "brand_id": null,
+    "call_for_authorize_id": null,
+    "captured": true,
+    "card": {
+        "cardholder": {
+            "identification": {
+                "number": "2312312132",
+                "type": "CC"
+            },
+            "name": "APRO"
+        },
+        "date_created": "2021-07-15T14:43:59.000-04:00",
+        "date_last_updated": "2021-07-23T00:10:43.000-04:00",
+        "expiration_month": 11,
+        "expiration_year": 2025,
+        "first_six_digits": "401354",
+        "id": "9022198521",
+        "last_four_digits": "6260"
+    },
+    "charges_details": [],
+    "collector_id": 789710961,
+    "corporation_id": null,
+    "counter_currency": null,
+    "coupon_amount": 0,
+    "currency_id": "COP",
+    "date_approved": "2021-07-23T00:13:10.000-04:00",
+    "date_created": "2021-07-23T00:13:09.000-04:00",
+    "date_last_updated": "2021-07-23T00:13:10.000-04:00",
+    "date_of_expiration": null,
+    "deduction_schema": null,
+    "description": "factura preuba 2",
+    "differential_pricing_id": null,
+    "external_reference": null,
+    "fee_details": [
+        {
+            "amount": 1187.2,
+            "fee_payer": "collector",
+            "type": "mercadopago_fee"
+        }
+    ],
+    "id": 15993290498,
+    "installments": 1,
+    "integrator_id": null,
+    "issuer_id": "205",
+    "live_mode": true,
+    "marketplace_owner": 789710961,
+    "merchant_account_id": null,
+    "merchant_number": null,
+    "metadata": {},
+    "money_release_date": "2021-07-23T00:13:10.000-04:00",
+    "money_release_schema": null,
+    "net_amount": 6000,
+    "notification_url": null,
+    "operation_type": "regular_payment",
+    "order": {
+        "id": "2991506186",
+        "type": "mercadopago"
+    },
+    "payer": {
+        "email": "test_user_56849975@testuser.com",
+        "entity_type": null,
+        "first_name": null,
+        "id": "789582537",
+        "identification": {
+            "number": "11111111",
+            "type": "C.C."
+        },
+        "last_name": null,
+        "operator_id": null,
+        "phone": {
+            "area_code": null,
+            "extension": null,
+            "number": null
+        },
+        "type": null
+    },
+    "payment_method_id": "visa",
+    "payment_type_id": "credit_card",
+    "platform_id": null,
+    "point_of_interaction": {},
+    "pos_id": null,
+    "processing_mode": "aggregator",
+    "refunds": [],
+    "shipping_amount": 0,
+    "sponsor_id": null,
+    "statement_descriptor": "Mercadopago*fake",
+    "status": "approved",
+    "status_detail": "accredited",
+    "store_id": null,
+    "taxes": [
+        {
+            "type": "IVA",
+            "value": 0
+        }
+    ],
+    "taxes_amount": 0,
+    "transaction_amount": 6000,
+    "transaction_amount_refunded": 0,
+    "transaction_details": {
+        "acquirer_reference": null,
+        "external_resource_url": null,
+        "financial_institution": null,
+        "installment_amount": 6000,
+        "net_received_amount": 4812.8,
+        "overpaid_amount": 0,
+        "payable_deferral_period": null,
+        "payment_method_reference_id": null,
+        "total_paid_amount": 6000
+    }
+}

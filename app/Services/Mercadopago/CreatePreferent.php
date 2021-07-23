@@ -6,8 +6,10 @@ namespace App\Services\Mercadopago;
 use App\Models\Payments;
 use App\Services\SaveInvoices;
 use App\Services\ValidateInvoices;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use MercadoPago\Entity;
 use MercadoPago\Item;
 use MercadoPago\Preference;
 use MercadoPago\SDK;
@@ -44,7 +46,7 @@ class CreatePreferent
             $validateInvoices = $this->validateInvoices->getInvoicesToPay();
         }
 
-        $preference = new Preference();
+        $invoices = [];
         foreach ($validateInvoices as $invoice) {
             // Crea un ítem en la preferencia
             $item = new Item();
@@ -54,9 +56,14 @@ class CreatePreferent
             $item->quantity = 1;
             $item->currency_id = "ARS";
             $item->unit_price = $invoice["total_amount"];
-
             $invoices[] = $item;
         }
+
+        $payment = new Payments();
+        $payment->save();
+        $this->saveInvoices->execute($payment, $invoices);
+
+        $preference = new Preference();
         if ($login) {
             $preference->back_urls = array(
                 "success" => route('dashboard.approved', ['invoices' => $validateInvoices, 'statuspay' => 'Approved']),
@@ -73,14 +80,13 @@ class CreatePreferent
 
         $preference->auto_return = "approved";
         $preference->items = $invoices;
+        $preference->external_reference = $payment->id;
         $preference->save();
+        $payment->preference_id = $preference->id;
+        $payment->save();
         // Log::info(print_r($preference, true));
         // Log::info(json_encode($preference));
         // Log::info($preference->id);
-        // $payment = new Payments();
-        // $payment->fill(['payment_id' => $preference->id]);
-        // $payment->save();
-        // $this->saveInvoices->execute($payment, $invoices);
         return $preference;
     }
 
