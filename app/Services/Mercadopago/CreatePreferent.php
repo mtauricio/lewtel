@@ -66,15 +66,15 @@ class CreatePreferent
         $preference = new Preference();
         if ($login) {
             $preference->back_urls = array(
-                "success" => route('dashboard.approved', ['invoices' => $validateInvoices, 'statuspay' => 'Approved']),
-                "failure" => route('dashboard.approved', ['invoices' => $validateInvoices, 'statuspay' => 'failure']),
-                "pending" => route('dashboard.approved', ['invoices' => $validateInvoices, 'statuspay' => 'pending'])
+                "success" => route('dashboard.approved', ['id_payment' => $payment->id, 'statuspay' => 'Approved']),
+                "failure" => route('dashboard.approved', ['id_payment' => $payment->id, 'statuspay' => 'failure']),
+                "pending" => route('dashboard.approved', ['id_payment' => $payment->id, 'statuspay' => 'pending'])
             );
         } else {
             $preference->back_urls = array(
-                "success" => route('redirect.approved', ['dni' => $request->dni, 'invoices' => $validateInvoices, 'statuspay' => 'Approved']),
-                "failure" => route('redirect.approved', ['dni' => $request->dni, 'invoices' => $validateInvoices, 'statuspay' => 'failure']),
-                "pending" => route('redirect.approved', ['dni' => $request->dni, 'invoices' => $validateInvoices, 'statuspay' => 'pending'])
+                "success" => route('redirect.approved', ['dni' => $request->dni, 'id_payment' =>$payment->id, 'statuspay' => 'Approved', 'dniUser' => $request->dni]),
+                "failure" => route('redirect.approved', ['dni' => $request->dni, 'id_payment' =>$payment->id, 'statuspay' => 'failure', 'dniUser' => $request->dni]),
+                "pending" => route('redirect.approved', ['dni' => $request->dni, 'id_payment' =>$payment->id, 'statuspay' => 'pending', 'dniUser' => $request->dni])
             );
         }
 

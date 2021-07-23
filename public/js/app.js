@@ -2960,6 +2960,8 @@ __webpack_require__.r(__webpack_exports__);
           "pageLength": 10,
           language: {
             "search": "Buscar:",
+            "zeroRecords": "No se encontraron resultados",
+            "emptyTable": "No se encontraron facturas por pagar",
             "paginate": {
               "previous": '‹',
               "next": '›'
@@ -3551,6 +3553,8 @@ __webpack_require__.r(__webpack_exports__);
           "pageLength": 10,
           language: {
             "search": "Buscar:",
+            "zeroRecords": "No se encontraron resultados",
+            "emptyTable": "No se encontraron casos",
             "paginate": {
               "previous": '‹',
               "next": '›'
@@ -3576,6 +3580,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../layout */ "./resources/js/Pages/layout.vue");
+/* harmony import */ var datatables_net_bs5__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! datatables.net-bs5 */ "./node_modules/datatables.net-bs5/js/dataTables.bootstrap5.js");
+/* harmony import */ var datatables_net_bs5__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(datatables_net_bs5__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3612,6 +3625,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "all",
   layout: _layout__WEBPACK_IMPORTED_MODULE_0__.default,
@@ -3628,6 +3642,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    this.table();
     this.data = {};
     $("#step_2").addClass('active');
     $("#step_1,#step_3,#step_4").removeClass('active');
@@ -3680,6 +3695,8 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.isConfirmed) {
           _this.$inertia.get("/invoices/".concat(_this.dni, "/all/pay"), _this.data);
+        } else {
+          $self.invoicesIds = [];
         }
       });
     },
@@ -3710,6 +3727,26 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       console.log(this.map);
+    },
+    table: function table() {
+      this.$nextTick(function () {
+        $('#invoicesTable').DataTable({
+          "lengthChange": false,
+          "ordering": false,
+          "info": false,
+          "pageLength": 10,
+          "searching": false,
+          language: {
+            "search": "Buscar:",
+            "zeroRecords": "No se encontraron resultados",
+            "emptyTable": "No se encontraron facturas por pagar",
+            "paginate": {
+              "previous": '‹',
+              "next": '›'
+            }
+          }
+        });
+      });
     }
   }
 });
@@ -4022,18 +4059,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "thankpage",
   layout: _layout__WEBPACK_IMPORTED_MODULE_0__.default,
-  props: ['invoices', 'statuspay'],
+  props: ['invoices', 'statuspay', 'dni'],
   data: function data() {
     return {
       title: ''
     };
   },
   mounted: function mounted() {
-    console.log(this.statuspay);
+    console.log(this.dni);
     $("#step_4").addClass('active');
     $("#step_1#step_3,#step_2").removeClass('active');
 
@@ -4046,8 +4087,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    demoFunction: function demoFunction() {
-      alert('Hola Mundo');
+    back: function back() {
+      this.$inertia.get('/invoices/' + this.dni + '/all');
     }
   }
 });
@@ -63409,68 +63450,77 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "col-md-12 table-responsive" }, [
-      _c("table", { staticClass: "table table-hover mb-4 " }, [
-        _c("thead", { staticClass: "bg-gray-300" }, [
-          _c("tr", [
-            _c("th", [
-              _c("input", {
-                attrs: { type: "checkbox" },
-                domProps: { checked: _vm.checkedAll == true },
-                on: {
-                  click: function($event) {
-                    return _vm.selectAll($event)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Número")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Nombre")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Fecha de vencimiento")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Total")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.invoices, function(invoice, index) {
-            return _c("tr", [
-              _c("td", [
+      _c(
+        "table",
+        {
+          staticClass: "table table-hover mb-4 ",
+          attrs: { id: "invoicesTable" }
+        },
+        [
+          _c("thead", { staticClass: "bg-gray-300" }, [
+            _c("tr", [
+              _c("th", [
                 _c("input", {
                   attrs: { type: "checkbox" },
-                  domProps: { checked: _vm.checked == true },
+                  domProps: { checked: _vm.checkedAll == true },
                   on: {
                     click: function($event) {
-                      return _vm.selectInvoice(invoice)
+                      return _vm.selectAll($event)
                     }
                   }
                 })
               ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(invoice.number))]),
+              _c("th", [_vm._v("Número")]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(invoice.name))]),
+              _c("th", [_vm._v("Nombre")]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(invoice.quote_date))]),
+              _c("th", [_vm._v("Fecha de vencimiento")]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(parseFloat(invoice.total_amount)))])
+              _c("th", [_vm._v("Total")])
             ])
-          }),
-          0
-        )
-      ]),
+          ]),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.invoices, function(invoice, index) {
+              return _c("tr", [
+                _c("td", [
+                  _c("input", {
+                    attrs: { type: "checkbox" },
+                    domProps: { checked: _vm.checked == true },
+                    on: {
+                      click: function($event) {
+                        return _vm.selectInvoice(invoice)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(invoice.number))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(invoice.name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(invoice.quote_date))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(parseFloat(invoice.total_amount)))])
+              ])
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "col-md-12 mt-5" }, [
         _c("div", { staticClass: "invoice-summary w-100" }, [
           _c("h5", { staticClass: "font-weight-bold" }, [
             _vm._v("Total a Pagar: "),
             _c("span", [_vm._v(" " + _vm._s(_vm.total))])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "my-5 justify-content-end" }, [
+          _c("div", { staticClass: "my-4 justify-content-end" }, [
             _c(
               "button",
               {
@@ -63486,7 +63536,14 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tfoot", [_c("tr", [_c("td")])])
+  }
+]
 render._withStripped = true
 
 
@@ -63855,6 +63912,20 @@ var render = function() {
                       ])
                     }),
                     0
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-12 mt-5" }, [
+                _c("div", { staticClass: "my-4 justify-content-end" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success px-5",
+                      attrs: { type: "button" },
+                      on: { click: _vm.back }
+                    },
+                    [_vm._v("Volver a facturas")]
                   )
                 ])
               ])

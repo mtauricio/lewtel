@@ -1,7 +1,7 @@
 <template>
     <div>
        <div class="col-md-12 table-responsive">
-        <table class="table table-hover mb-4 ">
+        <table class="table table-hover mb-4 " id="invoicesTable">
            <thead class="bg-gray-300">
             <tr>
                 <th><input type="checkbox" @click="selectAll($event)" :checked="checkedAll == true"></th>
@@ -20,11 +20,18 @@
                 <td>{{ parseFloat(invoice.total_amount) }}</td>
             </tr>
            </tbody>
+           <tfoot>
+               <tr>
+                   <td>
+                       
+                   </td>
+               </tr>
+           </tfoot>
         </table>
-            <div class="col-md-12">
+            <div class="col-md-12 mt-5">
                 <div class="invoice-summary w-100">
                     <h5 class="font-weight-bold">Total a Pagar: <span> {{ total }}</span></h5>
-                    <div class="my-5 justify-content-end">
+                    <div class="my-4 justify-content-end">
                     <button type="button" class="btn btn-success px-5" @click="send" :disabled="disabled == 0">Pagar Factura</button>
                     </div>
                 </div>
@@ -35,6 +42,7 @@
 
 <script>
 import Layout from '../layout'
+import datatable from 'datatables.net-bs5'
 export default {
     name: "all",
     layout: Layout,
@@ -52,6 +60,7 @@ export default {
         }
     },
      mounted() {
+         this.table();
          this.data = {};
          $("#step_2").addClass('active');
          $("#step_1,#step_3,#step_4").removeClass('active');
@@ -126,7 +135,30 @@ export default {
                 this.disabled = 0;
             }
             console.log(this.map);
-        }
+        },
+         table(){
+            this.$nextTick(() =>{
+            $('#invoicesTable').DataTable({
+                "lengthChange": false,
+                "ordering": false,
+                "info": false,
+                "pageLength": 10,
+                "searching": false,
+                language: {
+                    "search":"Buscar:",
+                    "zeroRecords":    "No se encontraron resultados",
+                    "emptyTable":     "No se encontraron facturas por pagar",
+                    "paginate": {
+                        "previous": '‹',
+                        "next":     '›',
+                       
+                    }
+                }
+                
+            });
+        });
+            
+        },
     }
 }
 </script>

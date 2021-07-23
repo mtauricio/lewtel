@@ -76,6 +76,8 @@ export default {
                 "pageLength": 10,
                 language: {
                     "search":"Buscar:",
+                    "zeroRecords":    "No se encontraron resultados",
+                    "emptyTable":     "No se encontraron facturas por pagar",
                     "paginate": {
                         "previous": '‹',
                         "next":     '›',

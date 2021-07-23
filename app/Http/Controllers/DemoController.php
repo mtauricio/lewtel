@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payments;
 use App\Services\GetInvoices;
 use App\Services\Mercadopago\CreatePreferent;
 use App\Services\ValidateInvoices;
 use Esatic\Suitecrm\Facades\Suitecrm;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Esatic\Suitecrm\Services\CrmApi;
 
 class DemoController extends Controller
 {
 
-
+    private CrmApi $apiCrm;
     private CreatePreferent $createPreferent;
     private array $invoicesToPay = array();
 
@@ -20,9 +22,10 @@ class DemoController extends Controller
      * CreatePreferent constructor.
      * @param CreatePreferent $createPreferent
      */
-    public function __construct(CreatePreferent $createPreferent)
+    public function __construct(CreatePreferent $createPreferent, CrmApi $apiCrm)
     {
         $this->createPreferent = $createPreferent;
+        $this->apiCrm = $apiCrm;
     }
     /**
      * @return \Inertia\Response
@@ -42,7 +45,7 @@ class DemoController extends Controller
     {
         $invoices = $getInvoices->execute($dni);
        
-        if ($invoices == false) {
+        if ($invoices === false) {
             return Inertia::render('invoices/noDniFound')->with('error', 'nodni');
         } else {
             return Inertia::render('invoices/all')->with('invoices', $invoices)->with('dni', $dni);
@@ -60,11 +63,23 @@ class DemoController extends Controller
         return Inertia::render('invoices/noDniFound')->with('error', 'newinvoice');
     }
 
-    public function redirectThanks(Request $request,string $dni)
+    public function redirectThanks(Request $request,GetInvoices $getInvoices)
     {
-        // dd($request->all());
 
-        return Inertia::render('invoices/thakpage')->with('invoices',$request->input('invoices'))->with('statuspay',$request->input('statuspay'));
+       $invoices = Payments::find($request->input('id_payment'))->invoices;
+       $idInvoices = [];
+       $invoicesPay = [];
+       foreach ($invoices as $invoice) {
+           $idInvoices[] = $invoice->id_crm_invoice;
+       }
+       
+       $invoicesCrm = $this->apiCrm->getEntries('AOS_Invoices',$idInvoices);
+       
+        if (isset($invoicesCrm['entry_list'][0]['name_value_list']['id'])) {
+            $invoicesPay =  $getInvoices->dtoData($invoicesCrm['entry_list']);
+        }
+
+        return Inertia::render('invoices/thakpage')->with('invoices',$invoicesPay)->with('statuspay',$request->input('statuspay'))->with('dni',$request->input('dniUser'));
     }
 
 }

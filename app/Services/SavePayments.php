@@ -23,11 +23,8 @@ class SavePayments
      */
     public function execute($response)
     {
-        Log::info(json_encode($response));
-        $payment = Payments::query()->where('payment_id', '=', $response->id)->get();
-        Log::info(count($payment));
-        if (count($payment) == 0) {
-            $payment = new Payments();
+        if ($response->status) {
+            $payment = Payments::query()->findOrFail($response->external_reference);
             $payment->payment_id = $response->id;
             $payment->status = $response->status;
             $payment->customer_id = $response->payer->id;

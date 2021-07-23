@@ -81,6 +81,8 @@ export default {
                 "pageLength": 10,
                    language: {
                     "search":"Buscar:",
+                    "zeroRecords":    "No se encontraron resultados",
+                    "emptyTable":     "No se encontraron casos",
                     "paginate": {
                         "previous": '‹',
                         "next":     '›',

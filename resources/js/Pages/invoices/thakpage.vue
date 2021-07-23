@@ -48,7 +48,11 @@
                                     </tbody>
                                     </table>
                                 </div>
-                               
+                               <div class="col-md-12 mt-5">
+                                    <div class="my-4 justify-content-end">
+                                        <button type="button" class="btn btn-success px-5" @click="back" >Volver a facturas</button>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -62,7 +66,7 @@ import Layout from '../layout'
 export default {
     name: "thankpage",
     layout: Layout,
-    props: ['invoices', 'statuspay'],
+    props: ['invoices', 'statuspay','dni'],
     data() {
         return {
                 title: ''
@@ -70,7 +74,7 @@ export default {
     },
 
      mounted() {
-         console.log(this.statuspay);
+         console.log(this.dni);
          $("#step_4").addClass('active');
          $("#step_1#step_3,#step_2").removeClass('active');
          if (this.statuspay == 'Approved') {
@@ -85,8 +89,8 @@ export default {
      },
 
     methods: {
-        demoFunction: function () {
-            alert('Hola Mundo');
+        back: function () {
+            this.$inertia.get('/invoices/' + this.dni + '/all');
         },
     }
 
