@@ -75,7 +75,8 @@ class TicketController extends Controller
             $response = $key;
            }
         }
-        return Inertia::render('dashboard/tickets/ticket')->with('result',$response)
-        ->with('ticket', $ticket)->with('updates', $updates);
+        return redirect()->back();
+      //   return Inertia::render('dashboard/tickets/ticket')->with('result',$response)
+      //   ->with('ticket', $ticket)->with('updates', $updates);
      }
 }
