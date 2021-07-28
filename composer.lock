@@ -1094,16 +1094,16 @@
         },
         {
             "name": "esatic/user-portal",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joncasasq/esatic-userportal.git",
-                "reference": "d226b63fe2e5824c3a435215bd28d3bceb5344dc"
+                "reference": "7fc7186606624d3fe96ba07c19e830d8114f80e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joncasasq/esatic-userportal/zipball/d226b63fe2e5824c3a435215bd28d3bceb5344dc",
-                "reference": "d226b63fe2e5824c3a435215bd28d3bceb5344dc",
+                "url": "https://api.github.com/repos/joncasasq/esatic-userportal/zipball/7fc7186606624d3fe96ba07c19e830d8114f80e5",
+                "reference": "7fc7186606624d3fe96ba07c19e830d8114f80e5",
                 "shasum": ""
             },
             "require": {
@@ -1136,9 +1136,9 @@
             "description": "Register a user activated from the CRM in the database and send a confirmation email",
             "support": {
                 "issues": "https://github.com/joncasasq/esatic-userportal/issues",
-                "source": "https://github.com/joncasasq/esatic-userportal/tree/1.0.1"
+                "source": "https://github.com/joncasasq/esatic-userportal/tree/1.0.2"
             },
-            "time": "2021-07-28T16:46:16+00:00"
+            "time": "2021-07-28T18:08:22+00:00"
         },
         {
             "name": "fideloper/proxy",
