@@ -26,7 +26,6 @@ Route::get('/invoices/payment', [\App\Http\Controllers\DemoController::class, 'i
 Route::get('/invoices/{dni}/all', [\App\Http\Controllers\DemoController::class, 'all']);
 Route::get('/invoices/{dni}/all/pay', [\App\Http\Controllers\DemoController::class, 'summary']);
 
-Route::get('/invoices/{dni}/all/pay/preference', [\App\Http\Controllers\MercadoPagoController::class, 'getPayment'])->name('getPayment');
 Route::get('/invoices/{dni}/all/pay/thank', [\App\Http\Controllers\DemoController::class, 'redirectThanks'])->name('redirect.approved');
 
 Route::post('webhooks', WebhooksController::class)->name('redirect.webhook');

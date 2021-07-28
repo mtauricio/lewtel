@@ -2,41 +2,42 @@
     <div>
         <div class="col-md-12 table-responsive">
             <table class="table table-hover mb-4 ">
-                 <thead class="bg-gray-300">
-                    <tr>
-                        <td>Número</td>
-                        <td>Nombre</td>
-                        <td>Total</td>
-                    </tr>
-                 </thead>
-                 <tbody>
-                    <tr v-for="(invoice,index) in invoicespay">
-                        <td>{{ invoice.number }}</td>
-                        <td>{{ invoice.name }}</td>
-                        <td>{{ parseFloat(invoice.total_amount) }}</td>
-                    </tr>
-                 </tbody>
+                <thead class="bg-gray-300">
+                <tr>
+                    <td>Número</td>
+                    <td>Nombre</td>
+                    <td>Total</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(invoice,index) in invoicespay">
+                    <td>{{ invoice.number }}</td>
+                    <td>{{ invoice.name }}</td>
+                    <td>{{ parseFloat(invoice.total_amount) }}</td>
+                </tr>
+                </tbody>
             </table>
-          
+
             <!-- <button @click="send">Pay Invoices</button> -->
             <div class="col-md-12">
                 <div class="w-100 text-center my-5" style="font-size: 17px;">
-                     <div class="cho-container"></div>
-                    </div>
+                    <div class="cho-container"></div>
                 </div>
             </div>
-           
         </div>
+
+    </div>
 </template>
 <script>
 import Layout from '../layout'
+
 export default {
     name: "summaryInvoices",
-     layout: Layout,
+    layout: Layout,
     props: ['invoicespay', 'preferenceid'],
     data() {
         return {
-             total: 0
+            total: 0
 
         }
     },

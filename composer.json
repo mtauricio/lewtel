@@ -8,6 +8,7 @@
         "php": "^7.3|^8.0",
         "doctrine/inflector": "1.4.0",
         "esatic/suitecrm": "^1.0",
+        "esatic/user-portal": "^1.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
