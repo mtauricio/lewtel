@@ -103,7 +103,7 @@ export default {
                 title: '¿Está seguro que desea pagar estas facturas?',
                 showDenyButton: false,
                 showCancelButton: true,
-                confirmButtonText: `Save`,
+                confirmButtonText: `Si`,
             }).then((result) => {
                 if (result.isConfirmed) {
                     this.$inertia.get(`/invoices/${this.dni}/all/pay`, this.data);

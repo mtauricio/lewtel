@@ -42,6 +42,8 @@ export default {
     },
 
       mounted() {
+
+          let public_key = process.env.MIX_MP_PUBLIC_KEY;
           let totalll = 0;
             this.invoicespay.forEach(function (value, key, map) {
                 totalll += parseFloat(value.total_amount);
@@ -49,8 +51,8 @@ export default {
             this.total = totalll;
 
                   // Agrega credenciales de SDK
-                const mp = new MercadoPago('APP_USR-e2f4d387-5825-4f0d-85cf-320c0d6fcc4a', {
-                        locale: 'es-CO'
+                const mp = new MercadoPago(public_key, {
+                        locale: 'es-AR'
                 });
 
                 // Inicializa el checkout

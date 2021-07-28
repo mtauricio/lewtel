@@ -3163,14 +3163,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    var public_key = "APP_USR-e2f4d387-5825-4f0d-85cf-320c0d6fcc4a";
     var totalll = 0;
     this.invoicespay.forEach(function (value, key, map) {
       totalll += parseFloat(value.total_amount);
     });
     this.total = totalll; // Agrega credenciales de SDK
 
-    var mp = new MercadoPago('APP_USR-e2f4d387-5825-4f0d-85cf-320c0d6fcc4a', {
-      locale: 'es-CO'
+    var mp = new MercadoPago(public_key, {
+      locale: 'es-AR'
     }); // Inicializa el checkout
 
     mp.checkout({
@@ -3691,7 +3692,7 @@ __webpack_require__.r(__webpack_exports__);
         title: '¿Está seguro que desea pagar estas facturas?',
         showDenyButton: false,
         showCancelButton: true,
-        confirmButtonText: "Save"
+        confirmButtonText: "Si"
       }).then(function (result) {
         if (result.isConfirmed) {
           _this.$inertia.get("/invoices/".concat(_this.dni, "/all/pay"), _this.data);
@@ -3961,6 +3962,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    var public_key = "APP_USR-e2f4d387-5825-4f0d-85cf-320c0d6fcc4a";
     var totalll = 0;
     this.invoicespay.forEach(function (value, key, map) {
       totalll += parseFloat(value.total_amount);
@@ -3969,8 +3971,8 @@ __webpack_require__.r(__webpack_exports__);
     $("#step_1,#step_2,#step_4").removeClass('active');
     $("#step_3").addClass('active'); // Agrega credenciales de SDK
 
-    var mp = new MercadoPago('APP_USR-e2f4d387-5825-4f0d-85cf-320c0d6fcc4a', {
-      locale: 'es-CO'
+    var mp = new MercadoPago(public_key, {
+      locale: 'es-AR'
     }); // Inicializa el checkout
 
     mp.checkout({
