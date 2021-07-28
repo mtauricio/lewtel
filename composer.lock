@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed76d8e7c7ab16dce3ab030642545897",
+    "content-hash": "d5d8ad1e9f5cac0eeea264bf55424419",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1091,6 +1091,54 @@
                 "source": "https://github.com/joncasasq/suitecrm-package/tree/1.0.5"
             },
             "time": "2021-07-10T19:02:32+00:00"
+        },
+        {
+            "name": "esatic/user-portal",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joncasasq/esatic-userportal.git",
+                "reference": "d226b63fe2e5824c3a435215bd28d3bceb5344dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joncasasq/esatic-userportal/zipball/d226b63fe2e5824c3a435215bd28d3bceb5344dc",
+                "reference": "d226b63fe2e5824c3a435215bd28d3bceb5344dc",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">7.4",
+                "php": "^7.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Esatic\\ActiveUser\\ActiveUserServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Esatic\\ActiveUser\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Casas",
+                    "email": "jonathan.casas@esatic.com"
+                }
+            ],
+            "description": "Register a user activated from the CRM in the database and send a confirmation email",
+            "support": {
+                "issues": "https://github.com/joncasasq/esatic-userportal/issues",
+                "source": "https://github.com/joncasasq/esatic-userportal/tree/1.0.1"
+            },
+            "time": "2021-07-28T16:46:16+00:00"
         },
         {
             "name": "fideloper/proxy",
