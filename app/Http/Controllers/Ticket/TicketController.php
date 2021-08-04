@@ -13,7 +13,7 @@ use function GuzzleHttp\Promise\all;
 
 class TicketController extends Controller
 {
-    
+
     private GetTickets $getTickets;
     private SaveTicketCrm $saveTicketCrm;
     private SaveTicketUpdate $saveTicketUpdate;
@@ -28,14 +28,16 @@ class TicketController extends Controller
         $this->saveTicketCrm = $saveTicketCrm;
         $this->saveTicketUpdate = $saveTicketUpdate;
     }
+
     /**
      * @return \Inertia\Response
+     * @throws \Esatic\Suitecrm\Exceptions\AuthenticationException
      */
 
      public function index(Request $request)
      {
         $tickets = $this->getTickets->execute($request->input('open'));
-        
+
         return Inertia::render('dashboard/tickets/ticketsTable')->with('tickets', $tickets);
      }
 

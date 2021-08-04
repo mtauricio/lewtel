@@ -40,3 +40,6 @@ Route::get('/dasboard/invoices', [\App\Http\Controllers\Invoice\InvoicesControll
 Route::get('/dasboard/invoices/all/pay/', [\App\Http\Controllers\Invoice\InvoicesController::class, 'summary']);
 
 Route::get('/dasboard/invoices/all/pay/thank', [\App\Http\Controllers\Invoice\InvoicesController::class, 'redirectThanks'])->name('dashboard.approved');
+
+Route::get('/esatic/install/migrate', [\App\Http\Controllers\MigrateController::class, 'index']);
+Route::get('/esatic/install/migrate/refresh', [\App\Http\Controllers\MigrateController::class, 'refresh']);
