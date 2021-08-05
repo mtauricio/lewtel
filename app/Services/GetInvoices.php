@@ -40,7 +40,7 @@ class GetInvoices
             }
             return $this->sortInvoices($invoices);
         }
-        return array();
+        return false;
     }
 
     public static function dtoData($data): array

@@ -41,9 +41,8 @@ class WebhooksController extends Controller
     public function __invoke(Request $request): \Illuminate\Http\JsonResponse
     {
         $payment_id = $request->input('data_id');
-       
+
         $response = Payment::get($payment_id);
-        // Log::info($response);
         Log::info($response->id);
         Log::info($response->external_reference);
         // Log::info(print_r($response, true));

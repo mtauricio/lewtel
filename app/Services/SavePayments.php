@@ -4,6 +4,7 @@
 namespace App\Services;
 
 use App\Models\Payments;
+use Carbon\Carbon;
 use Esatic\Suitecrm\Services\CrmApi;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -28,7 +29,7 @@ class SavePayments
             $payment->payment_id = $response->id;
             $payment->status = $response->status;
             $payment->customer_id = $response->payer->id;
-            $payment->payment_at = $response->date_approved;
+            $payment->payment_at = Carbon::parse($response->date_approved);
             $payment->save();
             return $payment;
         }
