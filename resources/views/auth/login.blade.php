@@ -9,8 +9,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="p-4">
-                                <div class="auth-logo text-center mb-4">
-                                    <img src="assets/images/logo.png" alt="">
+                                <div class=" text-center mb-4">
+                                    <img src="assets/images/logo.jpeg" alt="">
                                 </div>
                                 <h1 class="mb-3 text-18">{{ __('Iniciar Sesión') }}</h1>
                                 <form method="POST" action="{{ route('login') }}">

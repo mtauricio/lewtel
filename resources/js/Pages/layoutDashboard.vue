@@ -16,7 +16,7 @@
             <div class="app-admin-wrap layout-sidebar-large">
                 <div class="main-header">
                     <div class="logo" style="background: black;">
-                        <img src="/assets/images/logo.png " alt="" style="width: 100px; height: 48px;">
+                        <img src="/assets/images/logo.jpeg " alt="" style="width: 100px; height: 77px;">
                     </div>
 
                     <div class="menu-toggle">

@@ -17,7 +17,7 @@
                 <td>{{ invoice.number }}</td>
                 <td>{{ invoice.name }}</td>
                 <td>{{ invoice.quote_date }}</td>
-                <td>{{ parseFloat(invoice.total_amount) }}</td>
+                <td>{{ invoice.total_amount }}</td>
             </tr>
            </tbody>
            <tfoot>
@@ -31,8 +31,9 @@
             <div class="col-md-12 mt-5">
                 <div class="invoice-summary w-100">
                     <h5 class="font-weight-bold">Total a Pagar: <span> {{ total }}</span></h5>
-                    <div class="my-4 justify-content-end">
-                    <button type="button" class="btn btn-success px-5" @click="send" :disabled="disabled == 0">Pagar Factura</button>
+                    <div class="my-4 btn-toolbar justify-content-between">
+                        <button class="btn btn-dark px-5" @click="redirect()" type="button">Volver</button>
+                        <button type="button" class="btn btn-success px-5" @click="send" :disabled="disabled == 0">Pagar Factura</button>
                     </div>
                 </div>
             </div>
@@ -159,6 +160,9 @@ export default {
         });
             
         },
+        redirect(){
+                this.$inertia.get(`/invoices/payment`);
+            }
     }
 }
 </script>

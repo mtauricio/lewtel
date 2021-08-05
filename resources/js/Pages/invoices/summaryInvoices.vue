@@ -13,17 +13,21 @@
                 <tr v-for="(invoice,index) in invoicespay">
                     <td>{{ invoice.number }}</td>
                     <td>{{ invoice.name }}</td>
-                    <td>{{ parseFloat(invoice.total_amount) }}</td>
+                    <td>{{ invoice.total_amount }}</td>
                 </tr>
                 </tbody>
             </table>
 
             <!-- <button @click="send">Pay Invoices</button> -->
             <div class="col-md-12">
-                <div class="w-100 text-center my-5" style="font-size: 17px;">
-                    <div class="cho-container"></div>
+                <div class="btn-toolbar justify-content-between  my-5">
+                    <button class="btn btn-dark px-5" @click="redirect()" type="button">Volver</button>
+                        <div class="cho-container" style="font-size: 17px;"></div>
                 </div>
             </div>
+             
+                       
+              
         </div>
 
     </div>
@@ -34,7 +38,7 @@ import Layout from '../layout'
 export default {
     name: "summaryInvoices",
     layout: Layout,
-    props: ['invoicespay', 'preferenceid'],
+    props: ['invoicespay', 'preferenceid','dni'],
     data() {
         return {
             total: 0
@@ -69,6 +73,12 @@ export default {
                     }
                 });
         },
+
+         methods: {
+            redirect(){
+                this.$inertia.get('/invoices/' + this.dni + '/all');
+            }
+        }
 
     
 }

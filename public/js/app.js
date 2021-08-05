@@ -2928,6 +2928,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3045,6 +3046,9 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       console.log(this.map);
+    },
+    redirect: function redirect() {
+      this.$inertia.get('/home');
     }
   }
 });
@@ -3152,6 +3156,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "summaryInvoices",
@@ -3163,7 +3168,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var public_key = "APP_USR-e2f4d387-5825-4f0d-85cf-320c0d6fcc4a";
+    var public_key = "APP_USR-5d99f7ad-2cdc-44a8-ad61-9b675033242f";
     var totalll = 0;
     this.invoicespay.forEach(function (value, key, map) {
       totalll += parseFloat(value.total_amount);
@@ -3185,6 +3190,11 @@ __webpack_require__.r(__webpack_exports__);
 
       }
     });
+  },
+  methods: {
+    redirect: function redirect() {
+      this.$inertia.get('/dasboard/invoices');
+    }
   }
 });
 
@@ -3625,6 +3635,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3748,6 +3759,9 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       });
+    },
+    redirect: function redirect() {
+      this.$inertia.get("/invoices/payment");
     }
   }
 });
@@ -3951,18 +3965,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "summaryInvoices",
   layout: _layout__WEBPACK_IMPORTED_MODULE_0__.default,
-  props: ['invoicespay', 'preferenceid'],
+  props: ['invoicespay', 'preferenceid', 'dni'],
   data: function data() {
     return {
       total: 0
     };
   },
   mounted: function mounted() {
-    var public_key = "APP_USR-e2f4d387-5825-4f0d-85cf-320c0d6fcc4a";
+    var public_key = "APP_USR-5d99f7ad-2cdc-44a8-ad61-9b675033242f";
     var totalll = 0;
     this.invoicespay.forEach(function (value, key, map) {
       totalll += parseFloat(value.total_amount);
@@ -3986,6 +4004,11 @@ __webpack_require__.r(__webpack_exports__);
 
       }
     });
+  },
+  methods: {
+    redirect: function redirect() {
+      this.$inertia.get('/invoices/' + this.dni + '/all');
+    }
   }
 });
 
@@ -62617,7 +62640,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(invoice.status))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(parseFloat(invoice.total_amount)))])
+                _c("td", [_vm._v(_vm._s(invoice.total_amount))])
               ])
             }),
             0
@@ -62633,20 +62656,40 @@ var render = function() {
                       _c("span", [_vm._v(" " + _vm._s(_vm.total))])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "my-5 justify-content-end" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success px-5",
-                          attrs: {
-                            type: "button",
-                            disabled: _vm.disabled == 0
+                    _c(
+                      "div",
+                      {
+                        staticClass: "my-5 btn-toolbar justify-content-between"
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-dark px-5",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.redirect()
+                              }
+                            }
                           },
-                          on: { click: _vm.send }
-                        },
-                        [_vm._v("Pagar Factura")]
-                      )
-                    ])
+                          [_vm._v("Volver")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success px-5",
+                            attrs: {
+                              type: "button",
+                              disabled: _vm.disabled == 0
+                            },
+                            on: { click: _vm.send }
+                          },
+                          [_vm._v("Pagar Factura")]
+                        )
+                      ]
+                    )
                   ])
                 ])
               ])
@@ -62766,14 +62809,35 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(invoice.name))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(parseFloat(invoice.total_amount)))])
+              _c("td", [_vm._v(_vm._s(invoice.total_amount))])
             ])
           }),
           0
         )
       ]),
       _vm._v(" "),
-      _vm._m(1)
+      _c("div", { staticClass: "col-md-10" }, [
+        _c("div", { staticClass: "btn-toolbar justify-content-between my-5" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-dark px-5",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  return _vm.redirect()
+                }
+              }
+            },
+            [_vm._v("Volver")]
+          ),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "cho-container",
+            staticStyle: { "font-size": "17px" }
+          })
+        ])
+      ])
     ])
   ])
 }
@@ -62790,21 +62854,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("td", [_vm._v("Total")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [
-      _c(
-        "div",
-        {
-          staticClass: "w-100 text-center my-5",
-          staticStyle: { "font-size": "17px" }
-        },
-        [_c("div", { staticClass: "cho-container" })]
-      )
     ])
   }
 ]
@@ -63505,7 +63554,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(invoice.quote_date))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(parseFloat(invoice.total_amount)))])
+                _c("td", [_vm._v(_vm._s(invoice.total_amount))])
               ])
             }),
             0
@@ -63522,17 +63571,35 @@ var render = function() {
             _c("span", [_vm._v(" " + _vm._s(_vm.total))])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "my-4 justify-content-end" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-success px-5",
-                attrs: { type: "button", disabled: _vm.disabled == 0 },
-                on: { click: _vm.send }
-              },
-              [_vm._v("Pagar Factura")]
-            )
-          ])
+          _c(
+            "div",
+            { staticClass: "my-4 btn-toolbar justify-content-between" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-dark px-5",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.redirect()
+                    }
+                  }
+                },
+                [_vm._v("Volver")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success px-5",
+                  attrs: { type: "button", disabled: _vm.disabled == 0 },
+                  on: { click: _vm.send }
+                },
+                [_vm._v("Pagar Factura")]
+              )
+            ]
+          )
         ])
       ])
     ])
@@ -63784,14 +63851,39 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(invoice.name))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(parseFloat(invoice.total_amount)))])
+              _c("td", [_vm._v(_vm._s(invoice.total_amount))])
             ])
           }),
           0
         )
       ]),
       _vm._v(" "),
-      _vm._m(1)
+      _c("div", { staticClass: "col-md-12" }, [
+        _c(
+          "div",
+          { staticClass: "btn-toolbar justify-content-between  my-5" },
+          [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-dark px-5",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.redirect()
+                  }
+                }
+              },
+              [_vm._v("Volver")]
+            ),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "cho-container",
+              staticStyle: { "font-size": "17px" }
+            })
+          ]
+        )
+      ])
     ])
   ])
 }
@@ -63808,21 +63900,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("td", [_vm._v("Total")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [
-      _c(
-        "div",
-        {
-          staticClass: "w-100 text-center my-5",
-          staticStyle: { "font-size": "17px" }
-        },
-        [_c("div", { staticClass: "cho-container" })]
-      )
     ])
   }
 ]
@@ -64363,8 +64440,8 @@ var staticRenderFns = [
       { staticClass: "logo", staticStyle: { background: "black" } },
       [
         _c("img", {
-          staticStyle: { width: "100px", height: "48px" },
-          attrs: { src: "/assets/images/logo.png ", alt: "" }
+          staticStyle: { width: "100px", height: "77px" },
+          attrs: { src: "/assets/images/logo.jpeg ", alt: "" }
         })
       ]
     )

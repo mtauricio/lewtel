@@ -54,7 +54,7 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{'/invoices/payment' }}">{{ __('Pagar Facturas') }}</a>
+                                    <a class="nav-link btn btn-rounded btn-primary" style="width: 142px; color: white !important" href="{{'/invoices/payment' }}">{{ __('Pagar Facturas') }}</a>
                                 </li>
                             @endif
 

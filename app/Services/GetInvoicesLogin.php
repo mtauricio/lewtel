@@ -59,7 +59,7 @@ class GetInvoicesLogin
                 'name' => $item['name_value_list']['name']['value'],
                 'number' => $item['name_value_list']['number']['value'],
                 'quote_date' => $item['name_value_list']['quote_date']['value'],
-                'total_amount' => round($item['name_value_list']['total_amount']['value']),
+                'total_amount' => number_format((float)$item['name_value_list']['total_amount']['value'], 2, '.', ''),
                 'due_date' => $item['name_value_list']['due_date']['value'],
                 'status' => $item['name_value_list']['status']['value']
             ];
