@@ -42,35 +42,36 @@ export default {
         }
     },
 
-      mounted() {
-      
-           let public_key = process.env.MIX_MP_PUBLIC_KEY;
-           let totalll = 0;
-            this.invoicespay.forEach(function (value, key, map) {
-                totalll += parseFloat(value.total_amount);
-            });
-            this.total = totalll;
-            $("#step_1,#step_2,#step_4").removeClass('active');
-            $("#step_3").addClass('active');
+    mounted() {
 
-                  // Agrega credenciales de SDK
-                const mp = new MercadoPago(public_key, {
-                        locale: 'es-AR'
-                });
+        let public_key = process.env.MIX_MP_PUBLIC_KEY;
+        console.log(public_key);
+        let totalll = 0;
+        this.invoicespay.forEach(function (value, key, map) {
+            totalll += parseFloat(value.total_amount);
+        });
+        this.total = totalll;
+        $("#step_1,#step_2,#step_4").removeClass('active');
+        $("#step_3").addClass('active');
 
-                // Inicializa el checkout
-                mp.checkout({
-                    preference: {
-                        id: this.preferenceid
-                    },
-                    render: {
-                            container: '.cho-container', // Indica dónde se mostrará el botón de pago
-                            label: 'Pagar: '+ this.total, // Cambia el texto del botón de pago (opcional)
-                    }
-                });
-        },
+        // Agrega credenciales de SDK
+        const mp = new MercadoPago(public_key, {
+            locale: 'es-AR'
+        });
 
-    
+        // Inicializa el checkout
+        mp.checkout({
+            preference: {
+                id: this.preferenceid
+            },
+            render: {
+                container: '.cho-container', // Indica dónde se mostrará el botón de pago
+                label: 'Pagar: ' + this.total, // Cambia el texto del botón de pago (opcional)
+            }
+        });
+    },
+
+
 }
 </script>
 

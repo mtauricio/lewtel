@@ -37,21 +37,21 @@ class CreateTicket
         if (isset($account['entry_list'][0]['name_value_list']['id'])) {
             $tickets = array();
             $customerId = $account['entry_list'][0]['id'];
-            $result = Suitecrm::getRelationShipData( auth()->user()->type_user, $customerId, 'cases', array('id','case_number','name','status','description','descripcionn2_c','date_entered'), $query, 'date_entered asc');
+            $result = Suitecrm::getRelationShipData(auth()->user()->type_user, $customerId, 'cases', array('id', 'case_number', 'name', 'status', 'description', 'descripcionn2_c', 'date_entered'), $query, 'date_entered asc');
             if (isset($result['entry_list']) && count($result['entry_list']) > 0) {
                 $tickets = self::dtoData($result['entry_list']);
             }
             return $tickets;
         }
-        
-        return false;
+
+        return array();
     }
 
     public static function dtoData($data): array
     {
         $tickets = array();
         foreach ($data as $item) {
-            
+
             $tickets[] = [
                 'id' => $item['name_value_list']['id']['value'],
                 'affair' => $item['name_value_list']['name']['value'],
@@ -69,7 +69,7 @@ class CreateTicket
     {
         $ticket = $this->apiCrm->getEntry($id, 'Cases');
 
-        
+
         $ticketData = '';
         if (isset($ticket['entry_list'][0]['name_value_list']['id'])) {
             $ticketData = self::dtoData($ticket['entry_list']);

@@ -18,6 +18,10 @@ class Payments extends Model
         'payment_id',
     ];
 
+    protected $dates = [
+        'payment_at'
+    ];
+
     /**
      * @return HasMany
      */
