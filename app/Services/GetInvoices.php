@@ -6,6 +6,7 @@ namespace App\Services;
 
 use Esatic\Suitecrm\Facades\Suitecrm;
 use Esatic\Suitecrm\Services\CrmApi;
+use Illuminate\Support\Collection;
 
 class GetInvoices
 {
@@ -37,17 +38,16 @@ class GetInvoices
             if (isset($result['entry_list']) && count($result['entry_list']) > 0) {
                 $invoices = self::dtoData($result['entry_list']);
             }
-            return $invoices;
+            return $this->sortInvoices($invoices);
         }
-        
-        return false;
+        return array();
     }
 
     public static function dtoData($data): array
     {
         $invoices = array();
         foreach ($data as $item) {
-            
+
             $invoices[] = [
                 'id' => $item['name_value_list']['id']['value'],
                 'name' => $item['name_value_list']['name']['value'],
@@ -59,6 +59,17 @@ class GetInvoices
             ];
         }
         return $invoices;
+    }
+
+    /**
+     * @param array $invoices
+     * @return array
+     */
+    public function sortInvoices(array $invoices): array
+    {
+        $collection = new Collection($invoices);
+        $invoices = $collection->sortBy('due_date');
+        return $invoices->values()->all();
     }
 
 }

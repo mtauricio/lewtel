@@ -54,7 +54,7 @@ class CreatePreferent
             $item->title = $invoice["name"];
             $item->description = $invoice["number"];
             $item->quantity = 1;
-            $item->currency_id = "ARS";
+            $item->currency_id = env('MP_CURRENCY');
             $item->unit_price = $invoice["total_amount"];
             $invoices[] = $item;
         }
@@ -72,9 +72,9 @@ class CreatePreferent
             );
         } else {
             $preference->back_urls = array(
-                "success" => route('redirect.approved', ['dni' => $request->dni, 'id_payment' =>$payment->id, 'statuspay' => 'Approved', 'dniUser' => $request->dni]),
-                "failure" => route('redirect.approved', ['dni' => $request->dni, 'id_payment' =>$payment->id, 'statuspay' => 'failure', 'dniUser' => $request->dni]),
-                "pending" => route('redirect.approved', ['dni' => $request->dni, 'id_payment' =>$payment->id, 'statuspay' => 'pending', 'dniUser' => $request->dni])
+                "success" => route('redirect.approved', ['dni' => $request->dni, 'id_payment' => $payment->id, 'statuspay' => 'Approved', 'dniUser' => $request->dni]),
+                "failure" => route('redirect.approved', ['dni' => $request->dni, 'id_payment' => $payment->id, 'statuspay' => 'failure', 'dniUser' => $request->dni]),
+                "pending" => route('redirect.approved', ['dni' => $request->dni, 'id_payment' => $payment->id, 'statuspay' => 'pending', 'dniUser' => $request->dni])
             );
         }
 
@@ -84,9 +84,9 @@ class CreatePreferent
         $preference->save();
         $payment->preference_id = $preference->id;
         $payment->save();
-        // Log::info(print_r($preference, true));
-        // Log::info(json_encode($preference));
-        // Log::info($preference->id);
+        //Log::info(print_r($preference, true));
+        //Log::info(json_encode($preference));
+        //Log::info($preference->id);
         return $preference;
     }
 
