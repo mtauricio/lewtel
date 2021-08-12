@@ -43,3 +43,11 @@ Route::get('/dasboard/invoices/all/pay/thank', [\App\Http\Controllers\Invoice\In
 
 Route::get('/esatic/install/migrate', [\App\Http\Controllers\MigrateController::class, 'index']);
 Route::get('/esatic/install/migrate/refresh', [\App\Http\Controllers\MigrateController::class, 'refresh']);
+
+Route::get('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+Route::post('/to/logout', [\App\Http\Controllers\HomeController::class, 'toLogout'])->name('to.logout');
+
+Route::get('/show/password/reset/', [\App\Http\Controllers\HomeController::class, 'showResetForm'])->name('password.reset');
+Route::get('/show/profile/', [\App\Http\Controllers\HomeController::class, 'showProfile'])->name('show.profile');
+
+Route::post('/reset/password', [\App\Http\Controllers\ResetPasswordController::class, 'reset'])->name('reset.password');

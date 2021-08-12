@@ -6,9 +6,17 @@ import Vue from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
 import NProgress from 'nprogress';
 import { InertiaProgress } from '@inertiajs/progress'
+import { BootstrapVue } from 'bootstrap-vue'
+import { DropdownPlugin, TablePlugin } from 'bootstrap-vue'
+import axios from 'axios';
+
 
 Vue.use(InertiaApp)
 Vue.use(VueSweetalert2);
+Vue.use(BootstrapVue)
+Vue.use(DropdownPlugin)
+Vue.use(TablePlugin)
+Vue.use(axios);
 
 const app = document.getElementById('app')
 InertiaProgress.init({

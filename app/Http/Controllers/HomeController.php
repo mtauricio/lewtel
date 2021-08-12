@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Services\GetInvoicesLogin;
 use App\Services\GetTickets;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -41,5 +43,24 @@ class HomeController extends Controller
             ->with('openTickets',count($tickets))
             ->with('unpaidInvoices',count($invoices))
             ->with('allInvoices',count($allInvoices));
+    }
+
+    public function toLogout()
+    { 
+        $url = route('logout');
+        return Inertia::location($url);
+    }
+
+    public function showResetForm()
+    {
+        return Inertia::render('dashboard/profile/reserPassword')->with('id', auth()->user()->id);
+    }
+
+    public function showProfile()
+    {
+        return Inertia::render('dashboard/profile/profile') 
+        ->with('name',auth()->user()->name)
+        ->with('lastName',auth()->user()->last_name)
+        ->with('email', auth()->user()->email);
     }
 }

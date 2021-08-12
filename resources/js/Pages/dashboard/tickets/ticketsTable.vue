@@ -76,7 +76,6 @@ export default {
             this.$nextTick(() =>{
             $('#ticketsTable').DataTable({
                 "lengthChange": false,
-                "ordering": false,
                 "info": false,
                 "pageLength": 10,
                    language: {

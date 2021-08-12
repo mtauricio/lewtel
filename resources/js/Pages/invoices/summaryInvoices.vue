@@ -75,10 +75,6 @@ export default {
         });
     },
 
-
-                });
-        },
-
          methods: {
             redirect(){
                 this.$inertia.get('/invoices/' + this.dni + '/all');

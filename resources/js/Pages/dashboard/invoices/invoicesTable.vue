@@ -72,7 +72,6 @@ export default {
             this.$nextTick(() =>{
             $('#invoicesTable').DataTable({
                 "lengthChange": false,
-                "ordering": false,
                 "info": false,
                 "pageLength": 10,
                 language: {

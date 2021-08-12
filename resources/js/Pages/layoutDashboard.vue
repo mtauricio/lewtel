@@ -29,10 +29,9 @@
                     <div class="header-part-right">
 
                         <!-- User avatar dropdown -->
-                        <div class="dropdown">
+                        <!-- <div class="dropdown">
                             <div class="user col align-self-end">
                                 <i class="text-45 i-Male-21" id="userDropdown" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                                <!-- <img src="/assets/images/faces/1.jpg" id="userDropdown" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                     <div class="dropdown-header">
@@ -43,7 +42,18 @@
                                     <a class="dropdown-item" href="#" @click="logout">Sign out</a>
                                 </div>
                             </div>
+                        </div> -->
+                  <div class="dropdown">
+                    <div class="user col align-self-end">
+                        <b-dropdown size="lg"  variant="link" toggle-class="text-decoration-none" no-caret>
+                            <template #button-content>
+                            <span class="text-45 i-Male-21"></span>
+                            </template>
+                            <b-dropdown-item href="#" @click="changePass">Perfil</b-dropdown-item>
+                            <b-dropdown-item href="#" @click="logout">Cerrar Sesión</b-dropdown-item>
+                        </b-dropdown>
                         </div>
+                  </div>
                     </div>
 
                 </div>
@@ -151,11 +161,15 @@ export default {
         },
 
          logout() {
-            this.$inertia.post(`logout`);
+            this.$inertia.post(`/to/logout`);
         },
 
         home() {
             this.$inertia.get(`/home`);
+        },
+
+        changePass() {
+            this.$inertia.get(`/show/profile/`);
         }
 
         }
