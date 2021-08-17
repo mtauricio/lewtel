@@ -1,8 +1,8 @@
 <template>
     <main>
         <div class="main-header">
-            <div class="logo-law mx-3">
-                LewTel
+            <div class="logo ">
+               <img src="/assets/images/logo.jpeg" style="width: 100px; height: 64px; margin-left: 17rem!important;"/>
             </div>
             <div style="margin: auto"></div>
         </div>

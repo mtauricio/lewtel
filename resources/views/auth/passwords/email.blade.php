@@ -48,7 +48,7 @@
                         <div class="col-md-12">
                             <div class="p-4">
                                 <div class="text-center mb-4">
-                                    <img src="../assets/images/logo.jpeg" alt="">
+                                    <img src="{{asset("assets/images/logo.jpeg")}}" alt="">
                                 </div>
                                 <h1 class="mb-3 text-18">{{ __('Recuperar Contraseña') }}</h1>
                                 @if (session('status'))
