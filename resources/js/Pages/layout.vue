@@ -1,8 +1,8 @@
 <template>
     <main>
         <div class="main-header">
-            <div class="logo ">
-               <img src="/assets/images/logo.jpeg" style="width: 100px; height: 64px; margin-left: 17rem!important;"/>
+            <div class="ml-4">
+               <img src="/assets/images/logo.jpeg" style="width: 172px; height: 73px;"/>
             </div>
             <div style="margin: auto"></div>
         </div>
