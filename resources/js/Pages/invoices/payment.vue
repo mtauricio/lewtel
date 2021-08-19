@@ -2,7 +2,7 @@
     <div>
             <!-- <form > -->
             <div class="form-group my-5">
-                <label for="name" class="col-md-4 col-form-label text-md-right">DNI</label>
+                <label for="name" class="col-md-4 col-form-label">DNI</label>
                 <div class="col-md-6">
                     <input type="text" class="form-control" id="dni" name="dni" v-model="dni" required>
                 </div>
