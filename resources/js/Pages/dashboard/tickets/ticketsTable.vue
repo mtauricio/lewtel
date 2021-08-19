@@ -13,8 +13,8 @@
                     </div>
          
             </div>
-       <div class="col-md-12 table-responsive">
-        <table class="table table-hover mb-4 " id="ticketsTable">
+       <div class="col-md-12">
+        <table class="table table-hover mb-4 table-responsive-lg" id="ticketsTable">
            <thead class="bg-gray-300">
             <tr>
                 <th>Número</th>

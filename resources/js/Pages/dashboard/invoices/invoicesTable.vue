@@ -1,7 +1,7 @@
 <template>
     <div class="m-5">
-       <div class="col-md-12 table-responsive">
-        <table class="table table-hover mb-4 display nowrap" id="invoicesTable" style="display:nowrap;">
+       <div class="col-md-12">
+        <table class="table table-hover mb-4 display nowrap table-responsive-lg" id="invoicesTable" style="display:nowrap;">
            <thead class="bg-gray-300">
             <tr>
                 <th><input type="checkbox" @click="selectAll($event)" :checked="checkedAll == true"></th>
@@ -22,22 +22,18 @@
                 <td>{{ invoice.total_amount }}</td>
             </tr>
            </tbody>
-             <tfoot>
-               <tr >
-                   <td colspan="6">
-                     <div class="col-md-12 mt-4">
-                        <div class="invoice-summary w-100">
-                            <h5 class="font-weight-bold">Total a Pagar: <span> {{ total }}</span></h5>
-                            <div class="my-5 btn-toolbar justify-content-between">
-                                <button class="btn btn-dark px-5" @click="redirect()" type="button">Volver</button>
-                                <button type="button" class="btn btn-success px-5" @click="send" :disabled="disabled == 0">Pagar Factura</button>
-                            </div>
-                        </div>
-                    </div>
-                   </td>
-               </tr>
-           </tfoot>
         </table>
+        <div class="col-md-12 mt-4">
+            <div class="invoice-summary w-100">
+                <h5 class="font-weight-bold">Total a Pagar: <span> {{ total }}</span></h5>
+            </div>
+            <div class="invoice-summary">
+                <div class="my-5 btn-toolbar justify-content-between">
+                    <button class="btn btn-lg btn-dark" @click="redirect()" type="button">Volver</button>
+                    <button type="button" class="btn btn-lg btn-success" @click="send" :disabled="disabled == 0">Pagar Factura</button>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
 </template>

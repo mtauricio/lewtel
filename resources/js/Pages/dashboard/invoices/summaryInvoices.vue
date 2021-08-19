@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <div class="col-md-12 table-responsive">
-            <table class="table table-hover mb-4 ">
+    <div class="m-5">
+        <div class="col-md-12 ">
+            <table class="table table-hover table-responsive-lg mb-4 ">
                  <thead class="bg-gray-300">
                     <tr>
                         <td>Número</td>
@@ -19,12 +19,14 @@
             </table>
           
             <!-- <button @click="send">Pay Invoices</button> -->
-            <div class="col-md-10">
-                <div class="btn-toolbar justify-content-between my-5" >
-                   <button class="btn btn-dark px-5" @click="redirect()" type="button">Volver</button>
-                     <div class="cho-container" style="font-size: 17px;"></div>
+            <div class="col-md-12">
+                <div class="invoice-summary">
+                    <div class="btn-toolbar justify-content-between my-5" >
+                    <button class="btn btn-dark" @click="redirect()" type="button">Volver</button>
+                        <div class="cho-container" style="font-size: 17px;"></div>
                     </div>
                 </div>
+            </div>
             </div>
            
         </div>

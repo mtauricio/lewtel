@@ -1,40 +1,38 @@
 <template>
     <div>
-       <div class="col-md-12 table-responsive">
-        <table class="table table-hover mb-4 " id="invoicesTable">
-           <thead class="bg-gray-300">
+    <table class="table table-hover mb-4 table-responsive-lg" id="invoicesTable">
+        <thead class="bg-gray-300">
+        <tr>
+            <th><input type="checkbox" @click="selectAll($event)" :checked="checkedAll == true"></th>
+            <th>Número</th>
+            <th>Nombre</th>
+            <th>Fecha de vencimiento</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(invoice,index) in invoices">
+            <td><input type="checkbox" @click="selectInvoice(invoice)" :checked="checked == true"></td>
+            <td>{{ invoice.number }}</td>
+            <td>{{ invoice.name }}</td>
+            <td>{{ invoice.quote_date }}</td>
+            <td>{{ invoice.total_amount }}</td>
+        </tr>
+        </tbody>
+        <tfoot>
             <tr>
-                <th><input type="checkbox" @click="selectAll($event)" :checked="checkedAll == true"></th>
-                <th>Número</th>
-                <th>Nombre</th>
-                <th>Fecha de vencimiento</th>
-                <th>Total</th>
+                <td>
+                    
+                </td>
             </tr>
-           </thead>
-           <tbody>
-            <tr v-for="(invoice,index) in invoices">
-                <td><input type="checkbox" @click="selectInvoice(invoice)" :checked="checked == true"></td>
-                <td>{{ invoice.number }}</td>
-                <td>{{ invoice.name }}</td>
-                <td>{{ invoice.quote_date }}</td>
-                <td>{{ invoice.total_amount }}</td>
-            </tr>
-           </tbody>
-           <tfoot>
-               <tr>
-                   <td>
-                       
-                   </td>
-               </tr>
-           </tfoot>
-        </table>
-            <div class="col-md-12 mt-5">
-                <div class="invoice-summary w-100">
-                    <h5 class="font-weight-bold">Total a Pagar: <span> {{ total }}</span></h5>
-                    <div class="my-4 btn-toolbar justify-content-between">
-                        <button class="btn btn-dark px-5" @click="redirect()" type="button">Volver</button>
-                        <button type="button" class="btn btn-success px-5" @click="send" :disabled="disabled == 0">Pagar Factura</button>
-                    </div>
+        </tfoot>
+    </table>
+        <div class="col-md-12 mt-5">
+            <div class="invoice-summary w-100">
+                <h5 class="font-weight-bold">Total a Pagar: <span> {{ total }}</span></h5>
+                <div class="my-4 btn-toolbar justify-content-between">
+                    <button class="btn btn-lg btn-dark" @click="redirect()" type="button">Volver</button>
+                    <button type="button" class="btn btn-lg btn-success" @click="send" :disabled="disabled == 0">Pagar Factura</button>
                 </div>
             </div>
         </div>
