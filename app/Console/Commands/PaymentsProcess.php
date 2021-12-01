@@ -2,12 +2,15 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Invoices;
 use App\Models\Payments;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use MercadoPago\Payment;
 use App\Services\SavePayments;
 use App\Services\UpdateInvoiceStatus;
+use Illuminate\Support\Facades\Log;
+use MercadoPago\SDK;
 
 class PaymentsProcess extends Command
 {
@@ -42,14 +45,32 @@ class PaymentsProcess extends Command
      */
     public function handle(SavePayments $savePayments, UpdateInvoiceStatus $updateInvoiceStatus)
     {
-        $payments = Payments::query()->where('status', '<>', 'status')->get();
+        SDK::setAccessToken(env('MP_ACCESS_TOKEN'));
+        $payments = Payments::query()->where('status', '=', 'pending')->get();
         foreach ($payments as $payment) {
-            $paymentResult = Http::get('https://api.mercadopago.com/v1/payments/search?sort=date_created&criteria=desc&external_reference=1234' . $payment->id, []);
-            if ($paymentResult->paging->total > 0) {
-                foreach ($paymentResult->results as $item) {
-                    $paymentItem = new Payment($item);
+            // Log::info($payment->id);
+            $paymentResult = Http::withHeaders([ 
+                'Authorization' => 'Bearer '.env('MP_ACCESS_TOKEN')
+            ])->get('https://api.mercadopago.com/v1/payments/search', [
+                'sort' => 'date_created',
+                'criteria' => 'desc',
+                'external_reference' => $payment->id
+            ]);
+            // Log::info($paymentResult['results']);
+            if ($paymentResult['paging']['total'] > 0) {
+                foreach ($paymentResult['results'] as $item) {
+                    // Log::info($item['id']);
+                    $paymentItem = Payment::get($item['id']);
                     $response = $savePayments->execute($paymentItem);
-                    $items = $paymentItem->additional_info->items;
+                    $items = [];
+                    if (!isset($paymentItem->additional_info->items)) {
+                        $invoices = Invoices::query()->where('paymets_id', '=' ,$payment->id )->get();
+                        foreach ($invoices as $invoice) {
+                            $items[] = (object) ['id' => $invoice->id_crm_invoice];
+                        }
+                    }else {
+                        $items = $paymentItem->additional_info->items;
+                    }
                     $updateInvoiceStatus->execute($items, $paymentItem->status);
                 }
             }
